@@ -3,19 +3,9 @@ const { Schema, model } = require('mongoose');
 todoSchema = new Schema({
   todo: string,
   trim: true,
+  user: { type: Schema.Types.ObjectId, ref: 'User'}
 }, {
   timestamps: true,
-});
-
-todoSchema.static({
-  findTodo: function (todo) {
-    try {
-      return this.find({ todo })
-    } catch (e) {
-      console.log(e);
-      throw new Error(e);
-    }
-  },
 });
 
 const Todo = model('Todo', todoSchema);
