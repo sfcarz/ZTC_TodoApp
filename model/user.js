@@ -31,7 +31,7 @@ const UserSchema = new Schema({
 UserSchema.static({
   findByUsername: function (username) {
     try {
-      return this.find({ username });
+      return this.findOne({ username });
     } catch (e) {
       console.log(e);
       throw new Error(e);
