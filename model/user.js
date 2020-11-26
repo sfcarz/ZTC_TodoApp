@@ -22,13 +22,12 @@ const UserSchema = new Schema({
     type: String,
     minlength: 6,
     required: [true, 'Password is required'],
-  },
+  }
 }, {
   timestamps: true,
 });
 
 // Static belongs to the full ORM
-
 UserSchema.static({
   findByUsername: function (username) {
     try {
@@ -68,7 +67,6 @@ UserSchema.pre('save', async function (next) {
   }
   next();
 });
-
 
 const User = model('User', UserSchema);
 
