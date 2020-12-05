@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from './component/navbar';
+import SignUp from './component/signUp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <NavBar />
+    <SignUp />
   </React.StrictMode>,
   document.getElementById('root')
 );
