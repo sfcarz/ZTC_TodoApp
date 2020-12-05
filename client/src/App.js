@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+import { Link } from 'react-router-dom';
+import Main from './components/main';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="demo-big-content" style={{height: '300px', position: 'relative'}}>
+    <Layout fixedHeader>
+    <Header className="header-color" title={<span><span style={{ color: '#ddd' }}></span><strong>ZWTC ToDo App</strong></span>}>
+            <Navigation>
+                <Link to="/signIn">Sign In</Link>
+                <Link to="/signUp">Sign Up</Link>
+            </Navigation>
+        </Header>
+        <Drawer title="Title">
+            <Navigation>
+                <Link to="/signIn">Sign In</Link>
+                <Link to="/signUp">Sign Up</Link>
+            </Navigation>
+        </Drawer>
+        <Content>
+            <div className="page-content" />
+            <Main/>
+        </Content>
+    </Layout>
+</div>
   );
 }
 
