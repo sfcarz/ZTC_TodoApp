@@ -1,32 +1,15 @@
-import './App.css';
-import React, { Component } from 'react';
-import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
-import { Link } from 'react-router-dom';
-import Main from './components/main';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import signIn from './components/signIn';
+import signUp from './components/signUp';
 
-function App() {
-  return (
-    <div className="demo-big-content" style={{height: '300px', position: 'relative'}}>
-    <Layout fixedHeader>
-    <Header className="header-color" title={<span><span style={{ color: '#ddd' }}></span><strong>ZWTC ToDo App</strong></span>}>
-            <Navigation>
-                <Link to="/signIn">Sign In</Link>
-                <Link to="/signUp">Sign Up</Link>
-            </Navigation>
-        </Header>
-        <Drawer title="Title">
-            <Navigation>
-                <Link to="/signIn">Sign In</Link>
-                <Link to="/signUp">Sign Up</Link>
-            </Navigation>
-        </Drawer>
-        <Content>
-            <div className="page-content" />
-            <Main/>
-        </Content>
-    </Layout>
-</div>
-  );
-}
 
-export default App;
+
+const Main = () => (
+    <Switch>
+        <Route path="/signIn" component={signIn} />
+        <Route path="/signUp" component={signUp} />
+    </Switch>
+)
+
+export default Main;
