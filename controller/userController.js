@@ -1,5 +1,5 @@
 return await db.User.find({
-  userId: user._id;
+  userId: user._id,
 });
 
 
