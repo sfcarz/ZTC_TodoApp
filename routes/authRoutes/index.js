@@ -4,7 +4,7 @@ const router = require('express')
 const {
   signIn,
   signUp,
-} = require('../../controllers/authController');
+} = require('../../controller/authController');
 
 // /auth prepended to everything
 const signInMiddleware = require('../../middlewares/signInMiddleware');
