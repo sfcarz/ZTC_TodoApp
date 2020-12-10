@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 import { BrowserRouter } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 ReactDOM.render(
   <React.StrictMode>
