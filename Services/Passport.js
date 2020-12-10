@@ -14,7 +14,7 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
   //   call done like this done(err, null);
   let user;
   try {
-    user = await User.findOneByUsername(username);
+    user = await User.findByUsername(username);
     // user = await fetchUserByUsernameFromDb(username);
   } catch (e) {
     return done(e, null);
