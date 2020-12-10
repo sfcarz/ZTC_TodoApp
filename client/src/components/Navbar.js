@@ -6,18 +6,20 @@ import Main from '../App';
 
 function App() {
   return (
-    <div className="demo-big-content" style={{height: '300px', position: 'relative'}}>
+    <div className="page">
     <Layout fixedHeader>
-    <Header className="header-color" title={<span><span style={{ color: '#ddd' }}></span><strong>ZWTC ToDo App</strong></span>}>
+    <Header className="header-color" title={<Link style={{textDecoration: 'none', color: 'white'}} to="/">ZWTC ToDo App</Link>} scroll >
             <Navigation>
                 <Link to="/signIn">Sign In</Link>
                 <Link to="/signUp">Sign Up</Link>
+                <Link to="/component">ToDo</Link>
             </Navigation>
         </Header>
-        <Drawer title="Title">
+        <Drawer title={<Link style={{textDecoration: 'none', color: 'black'}} to="/">ZWTC ToDo App</Link>}>
             <Navigation>
                 <Link to="/signIn">Sign In</Link>
                 <Link to="/signUp">Sign Up</Link>
+                <Link to="/component">ToDo</Link>
             </Navigation>
         </Drawer>
         <Content>
