@@ -53,7 +53,7 @@ const initialValue = {
   password: ''
 }
 
-export default function SignIn() {
+export default function SignIn(props) {
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -72,6 +72,7 @@ export default function SignIn() {
     e.preventDefault()
     dispatch(fetchSignIn(values.username, values.password))
     setValues(initialValue)
+    props.location = '/'
   }
 
   return (
