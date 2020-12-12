@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {useDispatch} from 'react-redux'
+import { fetchSignIn } from '../app/userSlice'
 
 function Copyright() {
   return (
@@ -46,8 +48,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const initialValue = {
+  username: '',
+  password: ''
+}
+
 export default function SignIn() {
+  const dispatch = useDispatch();
+
   const classes = useStyles();
+
+  const [values, setValues] = useState(initialValue)
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(fetchSignIn(values.username, values.password))
+    setValues(initialValue)
+  }
 
   return (
     <Container className="sign" component="main" maxWidth="xs">
@@ -61,17 +86,21 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            onChange={handleInputChange}
+            value={values.username}
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
             label="Email Address"
-            name="email"
+            name="username"
             autoComplete="email"
             autoFocus
           />
           <TextField
+            onChange={handleInputChange}
+            value={values.password}
             variant="outlined"
             margin="normal"
             required
@@ -87,6 +116,7 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
+            onClick={handleSubmit}
             type="submit"
             fullWidth
             variant="contained"
