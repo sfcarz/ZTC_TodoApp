@@ -5,7 +5,7 @@ const addTodo = async (req, res) => {
     const todo = req.body.todo
     // const result = await db.Todo.create({todo})
     const result = await db.Todo.create({todo:todo})
-    res.json(result)
+    res.send(result)
 }
 
-module.exports = {addTodo}
+module.exports = addTodo

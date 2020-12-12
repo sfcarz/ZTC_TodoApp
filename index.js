@@ -10,17 +10,17 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true
 })
   .then(() => console.log('Yee'))
-  .catch(e => console.log(e));
+  .catch(e => console.log('root index line 13', e));
 
-mongoose.set('debug', true);
+// mongoose.set('debug', true);
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+// }ddd
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

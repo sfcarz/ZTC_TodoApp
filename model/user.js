@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     type: String,
     // required: [true, 'Email is required'],
     trim: true,
-    unique: true,
+    // unique: true,
   },
   // email: {
   //   type: String,
@@ -60,19 +60,19 @@ UserSchema.method({
   },
 });
 
-UserSchema.pre('save', async function (next) {
-  console.log('I am the this in pre hook', this);
-  const user = this;
-  if (user.isModified('password')) {
-    try {
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(user.password, salt);
-    } catch (e) {
-      next(e);
-    }
-  }
-  next();
-});
+// UserSchema.pre('save', async function (next) {
+//   console.log('I am the this in pre hook', this);
+//   const user = this;
+//   if (user.isModified('password')) {
+//     try {
+//       const salt = await bcrypt.genSalt(10);
+//       user.password = await bcrypt.hash(user.password, salt);
+//     } catch (e) {
+//       next(e);
+//     }
+//   }
+//   next();
+// });
 
 const User = model('User', UserSchema);
 
