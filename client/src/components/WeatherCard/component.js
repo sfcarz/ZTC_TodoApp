@@ -5,9 +5,15 @@ import Icon from "./icon";
 import Condition from "./condition";
 
 const WeatherCard = (props) => {
-  const red = 300;
+  let highColor = (1 - (props.temp - 12) / 28) * 255;
+  let lowColor = highColor - 150;
+
   const Card = styled.div`
-    background: linear-gradient(to bottom, rgba(${red}, 200, 200), lightblue);
+    background: linear-gradient(
+      to top,
+      rgb(255, ${highColor}, 0),
+      rgb(255, ${lowColor}, 0)
+    );
     margin: 0 auto;
     margin-left: 70%;
     margin-top: 100px;
