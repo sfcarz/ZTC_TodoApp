@@ -11,7 +11,7 @@ class Weather extends Component {
             <div className="banner-text-weather">
               <h1>Hi, Welcome to you ToDo App (USERNAME)</h1>
               <div>
-                <WeatherCard temp="5" />
+                <WeatherCard temp={-20} />
               </div>
             </div>
           </Cell>
