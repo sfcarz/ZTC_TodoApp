@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&family=Merriweather&display=swap');
+
 .header-color {
   background: #000428;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .page {
@@ -31,14 +38,15 @@
   border-radius: 10px;
  }
 
- .banner-text {
+/* checklist css */
+ .banner-text-checklist {
   text-align: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   margin: auto;
   margin-top: 2em;
-  background:rgba(255, 255, 255, 0.6);
+  background:rgba(255, 255, 255, 0.4);
   border: 8px solid #3f51b5;
   margin-bottom: 20px;
   box-shadow: 5px 5px 10px 8px black;
@@ -46,31 +54,21 @@
   margin-bottom: 10em;
 }
 
-/* .componentBox {
+/* weather */
+.banner-text-weather {
   text-align: center;
   justify-content: center;
-  width: 90%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   margin: auto;
-  margin-top: 8em;
-  background:black;
-  color:white;
-  border: 8px solid darkblue;
-  margin-bottom: 5em;
-  box-shadow: 5px 5px 10px 8px black;
-} */
-
-/* .checklist {
-  text-align: center;
-  justify-content: center;
-  width: 90%;
-  height: 40%;
-  margin: auto;
-  margin-top: 5em;;
-  background:black;
-  color:white;
-  border: 8px solid darkblue;
+  margin-top: 2em;
+  background:rgba(255, 250, 250, 0.4);
+  border: 8px solid #3f51b5;
   margin-bottom: 20px;
   box-shadow: 5px 5px 10px 8px black;
-} */
+  border-radius: 10px;
+  margin-bottom: 10em;
+}
+
+/* weatherCard */
 
