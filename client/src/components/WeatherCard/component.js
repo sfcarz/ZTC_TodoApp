@@ -1,14 +1,13 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import Location from './location';
-import Icon from './icon';
-import Condition from './condition';
-
+import React from "react";
+import styled from "@emotion/styled";
+import Location from "./location";
+import Icon from "./icon";
+import Condition from "./condition";
 
 const WeatherCard = (props) => {
-    const red = 100;
-    const Card = styled.div`
-    background: linear-gradient(to bottom, rgba(${red},200,200), lightblue);
+  const red = 300;
+  const Card = styled.div`
+    background: linear-gradient(to bottom, rgba(${red}, 200, 200), lightblue);
     margin: 0 auto;
     margin-left: 70%;
     margin-top: 100px;
@@ -20,15 +19,15 @@ const WeatherCard = (props) => {
     align-items: center;
     border-radius: 15px;
     color: white;
-  `
+  `;
 
-    return(
-        <Card className="card">
-            <Location/>
-            <Icon/>
-            <Condition/>
-        </Card>
-    );
-}
+  return (
+    <Card className="card">
+      <Location />
+      <Icon condition={props.condition} />
+      <Condition />
+    </Card>
+  );
+};
 
 export default WeatherCard;
