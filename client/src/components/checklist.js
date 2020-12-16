@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
-import AddTodo from '../pages/todos/AddTodo';
+import App from '../pages/App';
 
 class Checklist extends Component{
     render() {
@@ -10,7 +10,7 @@ class Checklist extends Component{
                     <Cell col={12}>
                         <div className="banner-text">
                             <h1>TODO</h1>
-                            <AddTodo />
+                            <App />
                         </div>
                     </Cell>
                 </Grid>

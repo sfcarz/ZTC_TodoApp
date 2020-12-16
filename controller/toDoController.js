@@ -1,11 +1,12 @@
 const db = require('../model')
 
-const addTodo = async (req, res) => {
-    // const { todo } = req.body;
-    const todo = req.body.todo
-    // const result = await db.Todo.create({todo})
-    const result = await db.Todo.create({todo:todo})
-    res.send(result)
-}
+module.exports = {
+    addTodo: async (req, res) => {
+        console.log('In the Controller', req.user);
 
-module.exports = addTodo
+        const todo = req.body.todo
+        // const userId = req.body.userId
+        const result = await db.Todo.create({ todo: todo, user: req.user._id })
+        res.send(result)
+    }
+}

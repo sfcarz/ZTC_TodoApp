@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../model/user')
 
+module.exports ={}
 // get all posts
 router.get('/', async (req, res) => {
   try {

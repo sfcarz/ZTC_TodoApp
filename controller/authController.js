@@ -11,8 +11,13 @@ const tokenForUser = (id) => {
 module.exports = {
   signIn: (req, res) => {
     console.log('I AM THE LOGGED IN USER', req.user);
-    res.json(tokenForUser(req.user._id));
+    // res.json(tokenForUser(req.user._id));
+    res.json({
+      token: tokenForUser(req.user._id),
+      user: req.user.username
+    })
   },
+
   signUp: async (req, res) => {
     const { username, password } = req.body;
     console.log(req.body);
@@ -26,8 +31,10 @@ module.exports = {
         .json(e);
     }
   },
+
   signOut: (req, res) => {
     req.logOut();
     res.json({ success: 'You are now logged out' });
   },
+  
 };

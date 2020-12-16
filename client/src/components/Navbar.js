@@ -26,8 +26,8 @@ function App() {
             <Main/>
         </Content>
     </Layout>
-</div>
-  );
+    </div>
+    );
 }
 
 export default App;
