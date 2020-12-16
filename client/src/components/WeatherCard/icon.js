@@ -72,7 +72,7 @@ const Icon = (props) => {
       break;
   }
 
-  return <Icon className="icon" src={icon} alt="Weather Icon" />;
+  return <Icon src={icon} alt="Weather Icon" />;
 };
 
 export default Icon;
