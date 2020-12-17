@@ -25,10 +25,12 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
 //   on the next request that the middleware applied
   if (user) {
     const doesPasswordMatch = await user.comparePassword(password);
+
     if (doesPasswordMatch) {
-      console.log(doesPasswordMatch);
+      console.log('Password Matches', doesPasswordMatch);
       return done(null, user);
     }
+
     console.log('happening');
     return done(null, false);
   } else {

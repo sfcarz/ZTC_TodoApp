@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchSignUp } from '../app/userSlice'
+
 
 function Copyright() {
   return (
@@ -46,8 +49,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+const initialValue = {
+  username: '',
+  password: '',
+  firstName: '',
+  lastName: '',
+}
+
+export default function SignUp(props) {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector(state => state.user);
+
+  const [values, setValues] = useState(initialValue)
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(fetchSignUp(values.firstName, values.lastName, values.username, values.password))
+    setValues(initialValue)
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/component')
+    }
+  }, [isAuthenticated])
 
   return (
     <Container className="sign" component="main" maxWidth="xs">
@@ -59,6 +94,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+        
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -68,20 +104,23 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={values.firstName}
+                onChange={handleInputChange}
                 id="firstName"
                 label="First Name"
                 autoFocus
               />
-            </Grid>
+          </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
+                value={values.lastName}
+                onChange={handleInputChange}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
@@ -89,10 +128,11 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                value={values.username}
+                onChange={handleInputChange}
+                id="username"
+                label="username"
+                name="username"
               />
             </Grid>
             <Grid item xs={12}>
@@ -100,23 +140,27 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={values.password}
+                onChange={handleInputChange}
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
+          </form>
+          
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."/>
+            </Grid>
+          <Grid>
           <Button
             type="submit"
             fullWidth
+            onClick={handleSubmit}
             variant="contained"
             color="primary"
             className={classes.submit}
@@ -130,7 +174,7 @@ export default function SignUp() {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </Grid>
       </div>
       <Box mt={5}>
         <Copyright />

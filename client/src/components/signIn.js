@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {useDispatch} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchSignIn } from '../app/userSlice'
 
 function Copyright() {
@@ -55,6 +55,7 @@ const initialValue = {
 
 export default function SignIn(props) {
   const dispatch = useDispatch();
+  const { isAuthenticated, error } = useSelector(state => state.user);
 
   const classes = useStyles();
 
@@ -72,8 +73,14 @@ export default function SignIn(props) {
     e.preventDefault()
     dispatch(fetchSignIn(values.username, values.password))
     setValues(initialValue)
-    props.location = '/'
+    // props.location = '/'
   }
+  
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/component')
+    }
+  }, [isAuthenticated])
 
   return (
     <Container className="sign" component="main" maxWidth="xs">
@@ -85,7 +92,14 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+
+        {error && <Typography>
+          Username and Password incorrect!
+        </Typography>}
+        
         <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
           <TextField
             onChange={handleInputChange}
             value={values.username}
@@ -98,7 +112,9 @@ export default function SignIn(props) {
             name="username"
             autoComplete="email"
             autoFocus
-          />
+          /> 
+          </Grid>
+          <Grid item xs={12} sm={6}>
           <TextField
             onChange={handleInputChange}
             value={values.password}
@@ -111,7 +127,11 @@ export default function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
+            />
+            </Grid>
+          </Grid>
+        </form>
+        
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -138,7 +158,7 @@ export default function SignIn(props) {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        
       </div>
       <Box mt={8}>
         <Copyright />
