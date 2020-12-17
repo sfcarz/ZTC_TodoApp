@@ -23,6 +23,8 @@ const Icon = (props) => {
     width: 40%;
   `;
   var icon = "";
+  console.log(props.condition);
+  console.log(WiCloudy);
   switch (props.condition) {
     case "Clouds":
       icon = <WiCloudy />;

@@ -11,35 +11,26 @@ function Weather() {
     country: null,
   });
 
-  const data = async (q) => {
+  const getWeather = async (q) => {
     const apiRes = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${q}&units=metric&APPID=fba8f47aed24da8bf91fe6fc2885a83e`
     );
     const resJSON = await apiRes.json();
-    return resJSON;
+    setWeather({
+      temp: resJSON.main.temp,
+      city: resJSON.name,
+      condition: resJSON.weather[0].main,
+      country: resJSON.country,
+    });
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    data(query).then((res) => {
-      setWeather({
-        temp: res.main.temp,
-        city: res.name,
-        condition: res.weather[0].main,
-        country: res.country,
-      });
-    });
+    getWeather(query);
   };
 
   useEffect(() => {
-    data(query).then((res) => {
-      setWeather({
-        temp: res.main.temp,
-        city: res.name,
-        condition: res.weather[0].main,
-        country: res.country,
-      });
-    });
+    getWeather(query);
   }, []);
 
   return (
