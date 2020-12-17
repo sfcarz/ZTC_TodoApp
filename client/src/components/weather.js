@@ -18,9 +18,9 @@ function Weather() {
   const handleSearch = (e) => {
     e.preventDefault();
     data().then((res) => {
-      console.log("the temperature is " + res.main.temp);
-      console.log("the temperature feels like it is " + res.main.feels_like);
       setTemp(res.main.temp);
+      setCondition(res.weather[0].main);
+      setCountry(res.sys.country);
     });
   };
   return (
@@ -32,9 +32,9 @@ function Weather() {
             <div>
               <WeatherCard
                 temp={temp}
-                condition="Tornado"
-                city="San Diego"
-                country="USA"
+                condition={condition}
+                city={city}
+                country={country}
               />
               <form>
                 <input value={city} onChange={(e) => setCity(e.target.value)} />
