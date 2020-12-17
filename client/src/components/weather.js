@@ -4,6 +4,9 @@ import WeatherCard from "./WeatherCard/component";
 
 function Weather() {
   const [city, setCity] = useState("San Diego, USA");
+  const [temp, setTemp] = useState(" ");
+  const [condition, setCondition] = useState(" ");
+  const [country, setCountry] = useState(" ");
   const data = async () => {
     const apiRes = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=fba8f47aed24da8bf91fe6fc2885a83e`
@@ -17,6 +20,7 @@ function Weather() {
     data().then((res) => {
       console.log("the temperature is " + res.main.temp);
       console.log("the temperature feels like it is " + res.main.feels_like);
+      setTemp(res.main.temp);
     });
   };
   return (
@@ -27,7 +31,7 @@ function Weather() {
             <h1>Hi, Welcome to you ToDo App (USERNAME)</h1>
             <div>
               <WeatherCard
-                temp={-20}
+                temp={temp}
                 condition="Tornado"
                 city="San Diego"
                 country="USA"
