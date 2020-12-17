@@ -9,6 +9,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
+
   const { user } = useSelector(state => state.user)
 
   const filterHandler = () => {
@@ -55,17 +56,17 @@ function App() {
         <h1> { user } </h1>
       </header>
       <Form
-        inputText={inputText}
-        todos={todos}
-        setTodos={setTodos}
-        setInputText={setInputText}
-        setStatus={setStatus}
-        filteredTodos={filteredTodos}
+        // inputText={inputText}
+        // todos={todos}
+        // setTodos={setTodos}
+        // setInputText={setInputText}
+        // setStatus={setStatus}
+        // filteredTodos={filteredTodos}
       />
       <TodoList
-        setTodos={setTodos}
-        todos={todos}
-        filteredTodos={filteredTodos}
+        // setTodos={setTodos}
+        // todos={todos}
+        // filteredTodos={filteredTodos}
       />
     </div>
   );

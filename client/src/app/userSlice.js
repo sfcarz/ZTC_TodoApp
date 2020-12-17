@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn } from '../api/todoApi'
+import { signIn, signUp } from '../api/todoApi'
 
 const initialState = {
     token: null,
@@ -31,7 +31,14 @@ const user = createSlice({
             state.loading = false
             state.error = action.payload
             state.isAuthenticated = false
-        }
+        },
+        // signUpSuccess(state, action) {
+        //     state.token = action.payload.token
+        //     state.user = action.payload.user
+        //     state.isAuthenticated = true
+        //     state.loading = false
+        //     state.error = null
+        // }
     }
 })
 
@@ -44,12 +51,26 @@ export const fetchSignIn = (username, password) => async (dispatch) => {
         dispatch(signInStart())
         const result = await signIn(username, password)
         if (result === 'Unauthorized') {
-            dispatch(signInFailure('Unauthorized'))
+            // dispatch(signInFailure('Unauthorized'))
         } else {
             dispatch(signInSuccess(result))
             // history.location = '/component'
         }
     } catch (error) {
-        dispatch(signInFailure(error))
+        // dispatch(signInFailure(error))
+    }
+}
+
+export const fetchSignUp = (firstName, lastName, username, password) => async (dispatch) => {
+    try {
+        dispatch(signInStart())
+        const result = await signUp(firstName, lastName, username, password)
+        if (result.token) {
+            dispatch(signInSuccess(result))
+        } else {
+            dispatch(signInFailure('Not Authenticated'))
+        }
+    } catch (e) {
+        dispatch(signInFailure(e))
     }
 }

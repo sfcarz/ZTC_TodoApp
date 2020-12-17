@@ -19,12 +19,15 @@ module.exports = {
   },
 
   signUp: async (req, res) => {
-    const { username, password } = req.body;
+    const { firstName, lastName, username, password } = req.body;
     console.log(req.body);
     try {
-      const user = await User.create({ username, password });
+      const user = await User.create({ firstName, lastName, username, password });
       console.log('I AM THE ID', user.id);
-      res.json(tokenForUser(user._id));
+      res.json({
+        token: tokenForUser(user.id),
+        user: user.username
+      });
     } catch (e) {
       console.log(e);
       res.status(400)

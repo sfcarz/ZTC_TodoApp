@@ -92,11 +92,14 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+
         {error && <Typography>
           Username and Password incorrect!
-        </Typography> }
+        </Typography>}
+        
         <form className={classes.form} noValidate>
-          
+          <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
           <TextField
             onChange={handleInputChange}
             value={values.username}
@@ -110,7 +113,8 @@ export default function SignIn(props) {
             autoComplete="email"
             autoFocus
           /> 
-
+          </Grid>
+          <Grid item xs={12} sm={6}>
           <TextField
             onChange={handleInputChange}
             value={values.password}
@@ -123,7 +127,11 @@ export default function SignIn(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
+            />
+            </Grid>
+          </Grid>
+        </form>
+        
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -150,7 +158,7 @@ export default function SignIn(props) {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        
       </div>
       <Box mt={8}>
         <Copyright />

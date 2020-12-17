@@ -4,7 +4,7 @@ import todoReducer from './todoSlice'
 
 const rootReducer = combineReducers({
     user: userReducer,
-    todo: todoReducer,
+    todos: todoReducer,
 })
 
 export default rootReducer;
