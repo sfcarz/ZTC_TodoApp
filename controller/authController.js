@@ -11,23 +11,33 @@ const tokenForUser = (id) => {
 module.exports = {
   signIn: (req, res) => {
     console.log('I AM THE LOGGED IN USER', req.user);
-    res.json(tokenForUser(req.user._id));
+    // res.json(tokenForUser(req.user._id));
+    res.json({
+      token: tokenForUser(req.user._id),
+      user: req.user.username
+    })
   },
+
   signUp: async (req, res) => {
-    const { username, password } = req.body;
+    const { firstName, lastName, username, password } = req.body;
     console.log(req.body);
     try {
-      const user = await User.create({ username, password });
+      const user = await User.create({ firstName, lastName, username, password });
       console.log('I AM THE ID', user.id);
-      res.json(tokenForUser(user._id));
+      res.json({
+        token: tokenForUser(user.id),
+        user: user.username
+      });
     } catch (e) {
       console.log(e);
       res.status(400)
         .json(e);
     }
   },
+
   signOut: (req, res) => {
     req.logOut();
     res.json({ success: 'You are now logged out' });
   },
+  
 };

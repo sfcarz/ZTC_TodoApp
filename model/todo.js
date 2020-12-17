@@ -6,9 +6,9 @@ const todoSchema = new Schema({
     required: [true, 'Enter Text'],
     trim: true,
   },
-  // user: { 
-  //   type: Schema.Types.ObjectId, 
-  //   ref: 'User'}
+  user: { 
+    type: Schema.Types.ObjectId, 
+    ref: 'User'}
 }, {
   timestamps: true,
 });

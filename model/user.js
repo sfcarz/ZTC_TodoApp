@@ -51,7 +51,7 @@ UserSchema.method({
     console.log(`I AM ${this.username}`);
   },
   comparePassword: async function (candidatePassword) {
-    console.log('this in compare password', this);
+    console.log('this in compare password', this, candidatePassword);
     try {
       return await bcrypt.compare(candidatePassword, this.password);
     } catch (e) {
@@ -60,19 +60,19 @@ UserSchema.method({
   },
 });
 
-// UserSchema.pre('save', async function (next) {
-//   console.log('I am the this in pre hook', this);
-//   const user = this;
-//   if (user.isModified('password')) {
-//     try {
-//       const salt = await bcrypt.genSalt(10);
-//       user.password = await bcrypt.hash(user.password, salt);
-//     } catch (e) {
-//       next(e);
-//     }
-//   }
-//   next();
-// });
+UserSchema.pre('save', async function (next) {
+  console.log('I am the this in pre hook', this);
+  const user = this;
+  if (user.isModified('password')) {
+    try {
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(user.password, salt);
+    } catch (e) {
+      next(e);
+    }
+  }
+  next();
+});
 
 const User = model('User', UserSchema);
 
