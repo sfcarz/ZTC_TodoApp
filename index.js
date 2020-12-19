@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const routes = require('./routes');
-require('./services/passport');
+require('./Services/Passport');
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
