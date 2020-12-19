@@ -15,8 +15,8 @@ const Location = ({ city, country }) => {
   `;
   return (
     <Container>
-      <City>{city}</City>
-      <Country>{country}</Country>
+      <City className='text-light'>{city}</City>
+      <Country className='text-light'>{country}</Country>
     </Container>
   );
 };

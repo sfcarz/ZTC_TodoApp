@@ -44,11 +44,14 @@ const WeatherCard = ({ temp, condition, city, country }) => {
   `;
 
   return (
-    <Card className="card">
-      <Location city={city} country={country} />
-      <Icon condition={condition} />
-      <Condition temp={temp} condition={condition} />
-    </Card>
+    <div className="weather">
+      <div className="card card-color">
+        <div className="card-body">
+          <Location className='text-light' city={city} country={country} />
+          <Condition temp={temp} condition={condition} />
+        </div>
+      </div>
+    </div>
   );
 };
 
