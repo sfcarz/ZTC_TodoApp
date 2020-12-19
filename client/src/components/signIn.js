@@ -108,7 +108,7 @@ export default function SignIn(props) {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="username"
             name="username"
             autoComplete="email"
             autoFocus
@@ -153,7 +153,7 @@ export default function SignIn(props) {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="./signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
