@@ -49,19 +49,27 @@ export default function Todo({ todo }) {
   // }
 
   return (
-    <div onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} className={style.todo}>
-      {isShown ? <input value={txt} onChange={handleChange} /> :
+    // <div onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} className={style.todo}>
+    //   {isShown ? <input value={txt} onChange={handleChange} /> :
+    //   <li>
+    //     {todo.todo}
+    //   </li>
+    //   }
+
+    <div onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
+    <div className='todo'>
+        {isShown ? <input value={txt} onChange={handleChange} /> :
       <li>
         {todo.todo}
       </li>
       }
-
       <button onClick={completeHandler} className="complete-btn">
         <i className="fas fa-check"></i>
       </button>
       <button onClick={deleteHandler} className="trash-btn">
         <i className="fas fa-trash"></i>
-      </button>
+        </button>
+      </div>
     </div>
   );
 }
